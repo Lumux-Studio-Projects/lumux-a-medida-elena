@@ -1,0 +1,205 @@
+---
+const principles = [
+  {
+    num: "01",
+    tag: "DISCIPLINE",
+    title: "Radical Subtraction",
+    quote: "Every element that does not actively sustain structural purpose is noise.",
+    body: "We begin not by sketching form, but by identifying what can be discarded. By eliminating decorative veneers, arbitrary gradients, and visual noise, the innate rhythm of the work emerges with pure clarity.",
+    rule: "RULE: ZERO SUPERFLUOUS ORNAMENTATION"
+  },
+  {
+    num: "02",
+    tag: "MATERIALITY",
+    title: "Tectonic Honesty",
+    quote: "Paper must remember the cotton fiber. Ink must declare its density.",
+    body: "In editorial and tactile object craft, we reject artificial laminates and superficial coatings. In digital systems, interfaces reflect typographic reality: text as text, monospaced tabular data, and sub-millisecond execution.",
+    rule: "RULE: NEVER CONCEAL THE MATERIAL TRUTH"
+  },
+  {
+    num: "03",
+    tag: "SPATIALITY",
+    title: "Negative Space as Mass",
+    quote: "Whitespace is not empty; it is pregnant with anticipation.",
+    body: "In Japanese Ma (間) and Swiss rationalism, the void between elements dictates the cadence of the observer. Generous margins and silence allow human consciousness to breathe without sensory bombardment.",
+    rule: "RULE: PROPORTION OVER SATURATION"
+  },
+  {
+    num: "04",
+    tag: "KINETICS",
+    title: "Calibrated Weight",
+    quote: "Motion must obey the physical laws of inertia, resistance, and decay.",
+    body: "Animation should never be decorative showmanship. Through Lenis inertia scrolling and custom GSAP easing curves, digital interactions convey physical weight, tactile damping, and quiet grace.",
+    rule: "RULE: INERTIA OVER ARBITRARY MOTION"
+  }
+];
+---
+
+<section class="manifesto-section hairline-b" id="manifesto">
+  <div class="container-minimal">
+    <!-- Header -->
+    <div class="section-header">
+      <div class="header-left">
+        <span class="mono-meta section-num">02 / DOCTRINE</span>
+        <h2 class="section-title">THE SUBTRACTIVE METHOD</h2>
+      </div>
+      <p class="section-lead">
+        Design achieves permanence not when there is nothing left to add, but when every superfluous gesture has been ruthlessly stripped away.
+      </p>
+    </div>
+
+    <!-- Principles Grid -->
+    <div class="principles-grid">
+      {principles.map((item) => (
+        <article class="principle-card hairline-r">
+          <div class="card-top">
+            <span class="mono-meta card-num">{item.num}</span>
+            <span class="mono-meta card-tag">{item.tag}</span>
+          </div>
+
+          <div class="card-content">
+            <h3 class="card-title">{item.title}</h3>
+            <p class="card-quote serif-italic">"{item.quote}"</p>
+          </div>
+
+          <div class="card-footer hairline-t">
+            <span class="mono-meta card-rule">{item.rule}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .manifesto-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 900px) {
+    .section-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .section-num {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.75rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--color-primary);
+  }
+
+  .section-lead {
+    max-width: 460px;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface-card);
+  }
+
+  @media (min-width: 640px) {
+    .principles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .principles-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .principle-card {
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+    gap: var(--space-6);
+    transition: background-color var(--transition-fast);
+  }
+
+  .principle-card:hover {
+    background-color: var(--color-surface-subtle);
+  }
+
+  @media (max-width: 1023px) {
+    .principle-card {
+      border-bottom: 1px solid var(--color-border);
+    }
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-num {
+    color: var(--color-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .card-tag {
+    color: var(--color-text-dim);
+    font-size: 0.6875rem;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .card-title {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .card-quote {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--color-primary);
+  }
+
+  .card-footer {
+    padding-top: var(--space-4);
+  }
+
+  .card-rule {
+    color: var(--color-primary);
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+</style>

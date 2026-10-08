@@ -1,0 +1,73 @@
+---
+import '../styles/tokens.css';
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  activePath?: string;
+}
+
+const {
+  title = "ELENA VANCE — Art Direction & Visual Systems",
+  description = "Independent design and art direction atelier based in Zurich & Kyoto. Investigating radical reduction, Swiss typography, and tactile editorial objects.",
+  activePath
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C0C0B'/><path d='M30 70V30H70V40H42V45H65V55H42V70H30Z' fill='%23F6F5F2'/></svg>" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <ClientRouter />
+  </head>
+  <body>
+    <Cursor />
+    <Header activePath={activePath || Astro.url.pathname} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <ThemeSwitcher />
+
+    <script>
+      import { initMinimalMotion, resetPageScroll } from '../scripts/motion';
+
+      // Disable browser automatic scroll restoration to avoid landing halfway on new pages
+      if (typeof history !== 'undefined' && 'scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
+      // Reset scroll immediately upon swapping the new page DOM
+      document.addEventListener('astro:after-swap', () => {
+        resetPageScroll();
+      });
+
+      // Re-initialize animations and Lenis on page load
+      document.addEventListener('astro:page-load', () => {
+        initMinimalMotion();
+      });
+    </script>
+  </body>
+</html>

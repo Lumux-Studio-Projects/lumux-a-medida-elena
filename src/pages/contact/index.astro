@@ -1,0 +1,751 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { faqs } from '../../data/faq';
+
+const trustPillars = [
+  {
+    num: "01",
+    title: "Two decades of senior craft",
+    body: "Behind every engagement is a focused squad of senior practitioners. No junior placements, no account churn — the people who pitch are the people who deliver."
+  },
+  {
+    num: "02",
+    title: "We answer the question you actually have",
+    body: "Most briefs arrive half-right. The initial weeks are dedicated to uncovering the real architectural shape of the challenge before putting a single deliverable in motion."
+  },
+  {
+    num: "03",
+    title: "Weekly clarity, never weekly noise",
+    body: "One short written check-in per week, one working design session, and one decision log readable over a single espresso. We do not fill calendars to look busy."
+  },
+  {
+    num: "04",
+    title: "Measured against what shipped",
+    body: "Every commission is signed off against a specific tangible outcome — printed monograph, living design system, or spatial installation. Never an idle slide deck."
+  }
+];
+
+const scopeOptions = [
+  "Editorial Monograph & Book Design",
+  "Brand Identity Architecture",
+  "Generative Digital Platform",
+  "Spatial Scenography & Exhibition",
+  "Material R&D & Tactile Packaging"
+];
+
+const timelineOptions = [
+  "4–8 Weeks (Sprint)",
+  "8–16 Weeks (Full Commission)",
+  "Q4 2026 Production",
+  "Long-term Strategic Advisory"
+];
+
+const budgetOptions = [
+  "CHF 15,000 – 30,000",
+  "CHF 30,000 – 60,000",
+  "CHF 60,000 – 120,000+",
+  "Cultural / Institutional Grant"
+];
+---
+
+<Layout
+  title="Get In Touch — Start Brave // Elena Vance Studio"
+  description="Initiate a commission for editorial monographs, brand identities, or spatial design with Elena Vance."
+  activePath="/contact"
+>
+  <!-- Contact Hero (Drasa style) -->
+  <section class="contact-hero hairline-b">
+    <div class="container-minimal">
+      <div class="hero-meta-row">
+        <span class="mono-meta">04 // COMMISSIONS</span>
+        <span class="pill-tag">Q4 2026 SLATE OPEN</span>
+      </div>
+
+      <h1 class="drasa-headline page-title">
+        Get in touch<span class="title-dot">.</span>
+      </h1>
+
+      <div class="direct-email-banner">
+        <a href="mailto:elena@vancestudio.ch" class="big-email-link" id="contact-big-email">
+          elena@vancestudio.ch
+        </a>
+        <button class="btn-pill-outline copy-email-btn" id="contact-copy-btn">
+          <span id="contact-copy-text">Copy Email Address</span>
+        </button>
+      </div>
+
+      <div class="contact-statement-grid">
+        <h2 class="statement-h2">
+          Whether it’s an editorial monograph, a brand reset, or a spatial system rebuild — we make work that lands.
+        </h2>
+        <p class="statement-sub">
+          Good work isn’t about volume. It’s about solving real problems with radical restraint and signing off against what shipped. Here’s how we partner.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why You Can Trust Us (Drasa style) -->
+  <section class="trust-pillars-section hairline-b">
+    <div class="container-minimal">
+      <div class="section-head-wrap">
+        <span class="mono-meta">THE STANDARD</span>
+        <h2 class="drasa-section-title">
+          Why you can trust us<span class="title-dot">.</span>
+        </h2>
+      </div>
+
+      <div class="trust-grid">
+        {trustPillars.map((pillar) => (
+          <div class="trust-card">
+            <span class="pillar-num mono-meta">{pillar.num}</span>
+            <h3 class="pillar-title">{pillar.title}</h3>
+            <p class="pillar-body">{pillar.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Commission Builder -->
+  <section class="builder-section hairline-b" id="commission-builder">
+    <div class="container-minimal">
+      <div class="builder-grid">
+        <!-- Guidance Column -->
+        <div class="builder-guidance-col">
+          <span class="mono-meta">SPECIFICATION</span>
+          <h2 class="drasa-section-title">
+            Commission<br />Builder<span class="title-dot">.</span>
+          </h2>
+          <p class="guidance-desc">
+            Select your parameters to formulate a structured brief. This transmits directly to Elena Vance’s personal review desk in Zurich.
+          </p>
+          <div class="direct-phone-box mono-meta">
+            <span>DIRECT TELEMETRY:</span>
+            <strong>+41 (0)44 218 90 40</strong>
+          </div>
+        </div>
+
+        <!-- Form Column -->
+        <div class="builder-form-col">
+          <form class="builder-form" id="contact-commission-form">
+            <!-- 1. Scope Selector -->
+            <div class="form-segment">
+              <label class="segment-label mono-meta">01. DISCIPLINE SCOPE</label>
+              <div class="options-pills-wrap">
+                {scopeOptions.map((opt, i) => (
+                  <button
+                    type="button"
+                    class={`opt-pill ${i === 0 ? 'is-selected' : ''}`}
+                    data-field="scope"
+                    data-value={opt}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- 2. Timeline Selector -->
+            <div class="form-segment">
+              <label class="segment-label mono-meta">02. ESTIMATED TIMELINE</label>
+              <div class="options-pills-wrap">
+                {timelineOptions.map((opt, i) => (
+                  <button
+                    type="button"
+                    class={`opt-pill ${i === 1 ? 'is-selected' : ''}`}
+                    data-field="timeline"
+                    data-value={opt}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- 3. Budget Selector -->
+            <div class="form-segment">
+              <label class="segment-label mono-meta">03. COMMITTED INVESTMENT</label>
+              <div class="options-pills-wrap">
+                {budgetOptions.map((opt, i) => (
+                  <button
+                    type="button"
+                    class={`opt-pill ${i === 1 ? 'is-selected' : ''}`}
+                    data-field="budget"
+                    data-value={opt}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- 4. Contact Inputs -->
+            <div class="form-inputs-grid">
+              <div class="input-field">
+                <label for="client-name" class="mono-meta input-lbl">YOUR NAME *</label>
+                <input type="text" id="client-name" name="name" required placeholder="e.g. Katherine Meyer" class="drasa-input" />
+              </div>
+              <div class="input-field">
+                <label for="client-email" class="mono-meta input-lbl">WORK EMAIL *</label>
+                <input type="email" id="client-email" name="email" required placeholder="katherine@museum.org" class="drasa-input" />
+              </div>
+              <div class="input-field full-span">
+                <label for="client-org" class="mono-meta input-lbl">ORGANIZATION / INSTITUTION</label>
+                <input type="text" id="client-org" name="organization" placeholder="e.g. Kunstverein Basel" class="drasa-input" />
+              </div>
+              <div class="input-field full-span">
+                <label for="client-notes" class="mono-meta input-lbl">BRIEF OVERVIEW / CONTEXT</label>
+                <textarea id="client-notes" name="notes" rows="3" placeholder="Tell us about the essence of the commission, desired deliverables, and key milestones..." class="drasa-input drasa-textarea"></textarea>
+              </div>
+            </div>
+
+            <!-- Submit Strip -->
+            <div class="form-submit-row">
+              <button type="submit" class="btn-pill-accent submit-btn">
+                <span>Dispatch Commission Brief</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <span class="status-memo mono-meta" id="form-feedback-memo">GUARANTEED RESPONSE WITHIN 48 HOURS</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Still Curious? FAQ Accordions (Drasa style) -->
+  <section class="faq-section hairline-b" id="faq">
+    <div class="container-minimal">
+      <div class="faq-header-wrap">
+        <span class="mono-meta">FAQ</span>
+        <h2 class="drasa-section-title">
+          Still curious<span class="title-dot">?</span>
+        </h2>
+      </div>
+
+      <div class="faq-list">
+        {faqs.map((faq, idx) => (
+          <div class="faq-item hairline-b" data-faq-item>
+            <button class="faq-trigger" aria-expanded={idx === 0 ? "true" : "false"}>
+              <h3 class="faq-question">{faq.question}</h3>
+              <span class="faq-icon" aria-hidden="true">{idx === 0 ? "—" : "+"}</span>
+            </button>
+            <div class={`faq-answer-panel ${idx === 0 ? 'is-open' : ''}`}>
+              <p class="faq-answer-text">{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Physical Presence & Telemetry -->
+  <section class="presence-section">
+    <div class="container-minimal">
+      <div class="presence-card">
+        <span class="mono-meta">ATELIERS</span>
+        <h2 class="drasa-section-title">Physical Presence<span class="title-dot">.</span></h2>
+
+        <div class="presence-grid">
+          <div class="atelier-box hairline-r">
+            <span class="mono-meta city-tag">ZÜRICH ATELIER</span>
+            <p class="address-text">
+              Neugasse 29<br />
+              8005 Zürich, Switzerland
+            </p>
+            <span class="mono-meta coords">47.3769° N, 8.5417° E</span>
+          </div>
+
+          <div class="atelier-box">
+            <span class="mono-meta city-tag">KYOTO STUDIO</span>
+            <p class="address-text">
+              Gion-machi, Higashiyama-ku<br />
+              Kyoto 605-0073, Japan
+            </p>
+            <span class="mono-meta coords">35.0116° N, 135.7681° E</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Copy email interaction
+  const copyBtn = document.getElementById('contact-copy-btn');
+  const copyText = document.getElementById('contact-copy-text');
+  if (copyBtn && copyText) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('elena@vancestudio.ch');
+        copyText.textContent = 'Copied to Clipboard!';
+        setTimeout(() => {
+          copyText.textContent = 'Copy Email Address';
+        }, 2500);
+      } catch (err) {
+        copyText.textContent = 'elena@vancestudio.ch';
+      }
+    });
+  }
+
+  // Pill selectors for form
+  const optPills = document.querySelectorAll('.opt-pill');
+  optPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const field = pill.getAttribute('data-field');
+      document.querySelectorAll(`.opt-pill[data-field="${field}"]`).forEach(p => p.classList.remove('is-selected'));
+      pill.classList.add('is-selected');
+    });
+  });
+
+  // Commission Form Submit Feedback
+  const form = document.getElementById('contact-commission-form');
+  const memo = document.getElementById('form-feedback-memo');
+  if (form && memo) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      memo.textContent = '✓ BRIEF DISPATCHED. ELENA WILL REVIEW PERSONALLY.';
+      memo.style.color = 'var(--color-secondary)';
+      form.reset();
+    });
+  }
+
+  // FAQ Accordion interaction
+  const faqTriggers = document.querySelectorAll('[data-faq-item] .faq-trigger');
+  faqTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('[data-faq-item]');
+      if (!item) return;
+
+      const panel = item.querySelector('.faq-answer-panel');
+      const icon = trigger.querySelector('.faq-icon');
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+      if (isExpanded) {
+        trigger.setAttribute('aria-expanded', 'false');
+        panel?.classList.remove('is-open');
+        if (icon) icon.textContent = '+';
+      } else {
+        trigger.setAttribute('aria-expanded', 'true');
+        panel?.classList.add('is-open');
+        if (icon) icon.textContent = '—';
+      }
+    });
+  });
+</script>
+
+<style>
+  .contact-hero {
+    padding-top: clamp(3.5rem, 7vw, 6.5rem);
+    padding-bottom: var(--space-section);
+    background-color: var(--color-surface);
+  }
+
+  .hero-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .page-title {
+    margin-bottom: var(--space-8);
+  }
+
+  .direct-email-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: clamp(3rem, 5vw, 5rem);
+  }
+
+  .big-email-link {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    transition: color var(--transition-fast);
+  }
+
+  .big-email-link:hover {
+    color: var(--color-secondary);
+  }
+
+  .contact-statement-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    max-width: 1040px;
+  }
+
+  @media (min-width: 860px) {
+    .contact-statement-grid {
+      grid-template-columns: 1.4fr 1.2fr;
+      align-items: start;
+    }
+  }
+
+  .statement-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.95rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    color: var(--color-primary);
+  }
+
+  .statement-sub {
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  /* Trust Pillars */
+  .trust-pillars-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .section-head-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .trust-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  @media (min-width: 1040px) {
+    .trust-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+  }
+
+  .trust-card {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .pillar-num {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1.3;
+  }
+
+  .pillar-body {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  /* Builder Section */
+  .builder-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .builder-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 900px) {
+    .builder-grid {
+      grid-template-columns: 1fr 1.6fr;
+      gap: var(--space-16);
+      align-items: start;
+    }
+  }
+
+  .builder-guidance-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .guidance-desc {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .direct-phone-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-dim);
+  }
+
+  .direct-phone-box strong {
+    font-size: 1rem;
+    color: var(--color-primary);
+  }
+
+  .builder-form-col {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .builder-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .form-segment {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .segment-label {
+    color: var(--color-text-dim);
+  }
+
+  .options-pills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .opt-pill {
+    padding: 8px 16px;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .opt-pill:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .opt-pill.is-selected {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .form-inputs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 600px) {
+    .form-inputs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .full-span {
+    grid-column: 1 / -1;
+  }
+
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .input-lbl {
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
+  }
+
+  .drasa-input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xs);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--color-primary);
+    transition: border-color var(--transition-fast);
+  }
+
+  .drasa-input:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    background-color: #FFFFFF;
+  }
+
+  .drasa-textarea {
+    resize: vertical;
+  }
+
+  .form-submit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    padding-top: var(--space-4);
+  }
+
+  .status-memo {
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
+  }
+
+  /* FAQ */
+  .faq-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .faq-header-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    padding: var(--space-6) 0;
+  }
+
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .faq-question {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .faq-icon {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    line-height: 1;
+  }
+
+  .faq-answer-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s var(--ease-expo), opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .faq-answer-panel.is-open {
+    max-height: 400px;
+    opacity: 1;
+    padding-top: var(--space-4);
+  }
+
+  .faq-answer-text {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    max-width: 860px;
+  }
+
+  /* Presence */
+  .presence-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .presence-card {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: clamp(2.5rem, 5vw, 4.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .presence-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .presence-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .atelier-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .city-tag {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .address-text {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .coords {
+    color: var(--color-text-dim);
+    font-size: 0.75rem;
+  }
+</style>

@@ -1,0 +1,207 @@
+---
+---
+
+<section class="dispatch-section hairline-b" id="dispatch">
+  <div class="container-minimal">
+    <div class="dispatch-card">
+      <div class="dispatch-header">
+        <span class="mono-meta section-num">05 / DIALOGUE</span>
+        <span class="mono-meta status-pill">● COMMISSIONS OPEN Q4 2026</span>
+      </div>
+
+      <div class="dispatch-body">
+        <h2 class="dispatch-title">
+          INITIATE A CREATIVE DIALOGUE.
+        </h2>
+        <p class="dispatch-lead">
+          Accepting a strictly limited slate of editorial monographs, brand identities, and digital commissions for Q4 2026.
+        </p>
+
+        <!-- Direct Email Interaction -->
+        <div class="email-action-row">
+          <a href="mailto:elena@vancestudio.ch" class="direct-email interactive-hover" id="home-email-target">
+            elena@vancestudio.ch
+          </a>
+          <button class="copy-email-btn mono-meta" id="home-copy-email-btn" aria-label="Copy studio email to clipboard">
+            <span class="copy-label">COPY EMAIL</span>
+          </button>
+          <a href="/contact" class="btn-minimal">
+            <span>COMMISSION INQUIRY FORM</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="dispatch-footer hairline-t">
+        <div class="channel-col">
+          <span class="mono-meta channel-lbl">ZURICH ATELIER</span>
+          <span class="channel-val">Neugasse 29, 8005 Zürich</span>
+        </div>
+        <div class="channel-col">
+          <span class="mono-meta channel-lbl">KYOTO STUDIO</span>
+          <span class="channel-val">Kamigyo Ward, Kyoto 602-0898</span>
+        </div>
+        <div class="channel-col">
+          <span class="mono-meta channel-lbl">ENCRYPTED SIGNAL</span>
+          <span class="channel-val mono-meta">+41 (0) 44 289 1042</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const copyBtn = document.getElementById('home-copy-email-btn');
+  const emailTarget = document.getElementById('home-email-target');
+
+  if (copyBtn && emailTarget) {
+    copyBtn.addEventListener('click', async () => {
+      const email = emailTarget.textContent?.trim() || 'elena@vancestudio.ch';
+      try {
+        await navigator.clipboard.writeText(email);
+        const labelSpan = copyBtn.querySelector('.copy-label');
+        if (labelSpan) {
+          const original = labelSpan.textContent;
+          labelSpan.textContent = 'COPIED TO CLIPBOARD';
+          copyBtn.style.color = 'var(--color-success)';
+          setTimeout(() => {
+            labelSpan.textContent = original;
+            copyBtn.style.color = '';
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Failed to copy', err);
+      }
+    });
+  }
+</script>
+
+<style>
+  .dispatch-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .dispatch-card {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .dispatch-card {
+      padding: var(--space-12);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .dispatch-card {
+      padding: var(--space-16);
+    }
+  }
+
+  .dispatch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section-num {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .status-pill {
+    color: var(--color-success);
+    font-size: 0.6875rem;
+  }
+
+  .dispatch-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: 880px;
+  }
+
+  .dispatch-title {
+    font-size: clamp(2.2rem, 5.2vw, 4.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .dispatch-lead {
+    font-size: clamp(1rem, 1.35vw, 1.1875rem);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 700px;
+  }
+
+  .email-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .direct-email {
+    font-family: var(--font-sans);
+    font-size: clamp(1.25rem, 2.8vw, 2.2rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+  }
+
+  .copy-email-btn {
+    padding: 10px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xs);
+    font-size: 0.6875rem;
+    color: var(--color-primary);
+    transition: all var(--transition-fast);
+    background-color: var(--color-surface);
+  }
+
+  .copy-email-btn:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface-card);
+  }
+
+  .dispatch-footer {
+    padding-top: var(--space-8);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .dispatch-footer {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .channel-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .channel-lbl {
+    font-size: 0.6875rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .channel-val {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+</style>

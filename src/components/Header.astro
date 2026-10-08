@@ -1,0 +1,290 @@
+---
+interface Props {
+  activePath?: string;
+}
+
+const { activePath = '/' } = Astro.props;
+
+const navItems = [
+  { href: '/work', label: 'Projects' },
+  { href: '/philosophy', label: 'Philosophy' },
+  { href: '/collective', label: 'Collective' },
+];
+
+const isActive = (href: string) => {
+  if (href === '/') return activePath === '/' || activePath === '';
+  return activePath.startsWith(href);
+};
+---
+
+<header class="site-header hairline-b">
+  <div class="container-minimal header-inner">
+    <!-- Brand / Studio Identity -->
+    <div class="header-brand">
+      <a href="/" class="brand-link" aria-label="Elena Vance Studio Home">
+        <span class="brand-monogram">EV</span>
+        <span class="brand-name">ELENA VANCE</span>
+        <span class="brand-dot title-dot">.</span>
+        <span class="brand-sub mono-meta">STUDIO & COLLECTIVE</span>
+      </a>
+    </div>
+
+    <!-- Live Dual Telemetry / World Time (ZRH & KYO) -->
+    <div class="header-telemetry" aria-label="Atelier Timezones">
+      <div class="telemetry-item mono-meta">
+        <span class="telemetry-city">ZRH</span>
+        <span class="mono-num telemetry-clock" id="clock-zurich">--:--:--</span>
+      </div>
+      <span class="telemetry-split" aria-hidden="true">/</span>
+      <div class="telemetry-item mono-meta">
+        <span class="telemetry-city">KYO</span>
+        <span class="mono-num telemetry-clock" id="clock-kyoto">--:--:--</span>
+      </div>
+    </div>
+
+    <!-- Navigation & Drasa-style Pill CTA -->
+    <div class="header-right-group">
+      <nav class="header-nav" aria-label="Main Navigation">
+        <div class="nav-links-wrap">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class={`nav-link ${isActive(item.href) ? 'is-active' : ''}`}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              <span class="nav-link-text">{item.label}</span>
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <!-- Drasa-style Start Brave CTA Button -->
+      <a href="/contact" class="btn-pill-accent header-cta">
+        <span>Start Brave</span>
+        <span class="cta-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: var(--color-surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 74px;
+    gap: var(--space-4);
+  }
+
+  /* Brand Styling */
+  .header-brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+  }
+
+  .brand-monogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.02em;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .brand-dot {
+    font-size: 1.25rem;
+    line-height: 0;
+    font-weight: 800;
+  }
+
+  .brand-sub {
+    font-size: 0.65rem;
+    color: var(--color-text-dim);
+    margin-left: 4px;
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .brand-sub {
+      display: inline-block;
+    }
+  }
+
+  /* Telemetry Clocks */
+  .header-telemetry {
+    display: none;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 6px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-surface-subtle);
+  }
+
+  @media (min-width: 1040px) {
+    .header-telemetry {
+      display: flex;
+    }
+  }
+
+  .telemetry-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+  }
+
+  .telemetry-city {
+    color: var(--color-text-dim);
+    font-weight: 600;
+  }
+
+  .telemetry-clock {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .telemetry-split {
+    color: var(--color-border);
+    font-size: 0.75rem;
+  }
+
+  /* Right Group: Nav & CTA */
+  .header-right-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: var(--color-surface-subtle);
+    padding: 4px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+    background-color: var(--color-surface-card);
+  }
+
+  .nav-link.is-active {
+    color: var(--color-primary);
+    background-color: var(--color-surface-card);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Drasa CTA Button */
+  .header-cta {
+    padding: 8px 18px;
+    font-size: 0.8125rem;
+  }
+
+  .cta-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  .header-cta:hover .cta-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 640px) {
+    .header-inner {
+      height: 66px;
+      gap: var(--space-2);
+    }
+
+    .nav-link {
+      padding: 6px 11px;
+      font-size: 0.75rem;
+    }
+
+    .header-cta {
+      display: none;
+    }
+  }
+
+  @media (max-width: 440px) {
+    .header-inner {
+      height: 62px;
+    }
+
+    .brand-name {
+      font-size: 0.875rem;
+    }
+
+    .nav-links-wrap {
+      gap: 2px;
+      padding: 2px;
+    }
+
+    .nav-link {
+      padding: 5px 8px;
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .brand-name {
+      display: none;
+    }
+  }
+</style>

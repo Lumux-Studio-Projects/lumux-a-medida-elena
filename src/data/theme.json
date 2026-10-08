@@ -1,0 +1,62 @@
+{
+  "name": "Elena Vance Studio Palettes",
+  "defaultTheme": "alabastro",
+  "themes": [
+    {
+      "id": "alabastro",
+      "name": "Alabastro & Bermellón",
+      "subtitle": "Papel editorial cálido y acento cinabrio suizo",
+      "colors": {
+        "bgPrimary": "#F7F5F0",
+        "bgSecondary": "#EFECE6",
+        "bgCard": "#FFFFFF",
+        "textPrimary": "#121211",
+        "textSecondary": "#63615C",
+        "accent": "#E13B22",
+        "border": "#E0DDD6"
+      }
+    },
+    {
+      "id": "klein-studio",
+      "name": "Klein & Estudio Editorial",
+      "subtitle": "Lienzo neutro y azul ultramar internacional",
+      "colors": {
+        "bgPrimary": "#F4F4F6",
+        "bgSecondary": "#E8E8ED",
+        "bgCard": "#FFFFFF",
+        "textPrimary": "#0B0C10",
+        "textSecondary": "#555866",
+        "accent": "#2649F5",
+        "border": "#DCDDE4"
+      }
+    },
+    {
+      "id": "nordic-sage",
+      "name": "Salvia Nórdica & Carbón",
+      "subtitle": "Atmósfera mineral serena y verde botánico mate",
+      "colors": {
+        "bgPrimary": "#EFECE5",
+        "bgSecondary": "#E5E0D7",
+        "bgCard": "#F9F8F5",
+        "textPrimary": "#181B18",
+        "textSecondary": "#575B57",
+        "accent": "#2F5B44",
+        "border": "#D5D0C6"
+      }
+    },
+    {
+      "id": "obsidian-noir",
+      "name": "Obsidiana & Grafito",
+      "subtitle": "Noche de galería, tipografía de tiza y alto contraste",
+      "colors": {
+        "bgPrimary": "#0C0C0B",
+        "bgSecondary": "#151514",
+        "bgCard": "#1A1A18",
+        "textPrimary": "#F4F3ED",
+        "textSecondary": "#8E8D87",
+        "accent": "#E13B22",
+        "border": "#242321"
+      }
+    }
+  ]
+}

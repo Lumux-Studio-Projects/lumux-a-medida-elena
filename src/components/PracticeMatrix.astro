@@ -1,0 +1,228 @@
+---
+const disciplines = [
+  {
+    code: "EDI-01",
+    title: "Editorial & Book Design",
+    scope: "Archival Monographs & Hardbound Volumes",
+    deliverables: [
+      "Swiss Baseline Grid Systems",
+      "Munken & Echizen Washi Curation",
+      "Cold-Glue Lay-Flat Linen Binding"
+    ],
+    status: "SELECTIVE COMMISSION"
+  },
+  {
+    code: "IDN-02",
+    title: "Brand Identity Systems",
+    scope: "Monolithic Brands & Digital Platforms",
+    deliverables: [
+      "Austere Visual Systems & Marks",
+      "Custom Modular Display Cuts",
+      "High-Performance Web Consoles"
+    ],
+    status: "ACTIVE COMMISSION"
+  },
+  {
+    code: "SCN-03",
+    title: "Art Direction & Scenography",
+    scope: "Museum Scenography & Spatial Installations",
+    deliverables: [
+      "Exhibition Scenography & Flow",
+      "Acid-Etched Unlacquered Bronze",
+      "Indirect Diurnal Light Curation"
+    ],
+    status: "LIMITED COMMISSIONS"
+  },
+  {
+    code: "OBJ-04",
+    title: "Packaging & Tactile Objects",
+    scope: "Bespoke Packaging & Industrial Artifacts",
+    deliverables: [
+      "Molded High-Density Paper Pulp",
+      "CNC Milled Monobloc Aluminum",
+      "Bespoke Glass Flacons & Letterpress"
+    ],
+    status: "IN PRODUCTION"
+  }
+];
+---
+
+<section class="matrix-section hairline-b" id="matrix">
+  <div class="container-minimal">
+    <div class="section-header">
+      <div class="header-left">
+        <span class="mono-meta section-num">03 / CAPABILITIES</span>
+        <h2 class="section-title">PRACTICE MATRIX</h2>
+      </div>
+      <p class="section-lead">
+        Four dedicated disciplines spanning editorial publication, identity systems, spatial scenography, and tactile objects.
+      </p>
+    </div>
+
+    <div class="matrix-grid">
+      {disciplines.map((d) => (
+        <div class="matrix-card hairline-r">
+          <div class="card-head">
+            <span class="mono-meta discipline-code">{d.code}</span>
+            <span class="mono-meta discipline-status">● {d.status}</span>
+          </div>
+
+          <div class="card-body">
+            <h3 class="discipline-title">{d.title}</h3>
+            <span class="discipline-scope mono-meta">{d.scope}</span>
+
+            <ul class="deliverables-list">
+              {d.deliverables.map((item) => (
+                <li class="deliverable-item">
+                  <span class="dot-indicator" aria-hidden="true">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .matrix-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 900px) {
+    .section-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .section-num {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.75rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--color-primary);
+  }
+
+  .section-lead {
+    max-width: 460px;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface-card);
+  }
+
+  @media (min-width: 768px) {
+    .matrix-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .matrix-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .matrix-card {
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    transition: background-color var(--transition-fast);
+  }
+
+  .matrix-card:hover {
+    background-color: var(--color-surface-subtle);
+  }
+
+  @media (max-width: 1099px) {
+    .matrix-card {
+      border-bottom: 1px solid var(--color-border);
+    }
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .discipline-code {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .discipline-status {
+    color: var(--color-text-dim);
+    font-size: 0.6875rem;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .discipline-title {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .discipline-scope {
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .deliverables-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .deliverable-item {
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    line-height: 1.5;
+  }
+
+  .dot-indicator {
+    color: var(--color-secondary);
+  }
+</style>

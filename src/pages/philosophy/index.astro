@@ -1,0 +1,426 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const principles = [
+  {
+    num: "01",
+    title: "Design is a discipline of thought",
+    body: "When digital tools are faster than ever and anyone can produce a visual layout in seconds, the only genuine differentiator is how deeply you think. We treat typography, negative space, and material as instruments of cognition."
+  },
+  {
+    num: "02",
+    title: "Restraint is a trained practice",
+    body: "Most agencies add until a deadline forces them to stop. We begin with everything stripped away, adding only what cannot be removed without collapse. Subtractive rigor is active, deliberate discipline."
+  },
+  {
+    num: "03",
+    title: "Permanence over ephemeral novelty",
+    body: "We do not design for the algorithm of the week. We design monographs that museum curators preserve decades later, and brand identities that survive contact with the real world."
+  },
+  {
+    num: "04",
+    title: "Tactile mass & digital rigor",
+    body: "We do not accept the false divide between physical paper and computational software. Both are architectures that organize human stillness, focus, and contemplation."
+  }
+];
+
+const credentials = [
+  { year: "18+", label: "Years of Senior Design Leadership" },
+  { year: "2", label: "Studio Locations (Zurich // Kyoto)" },
+  { year: "1,200", label: "Hand-Numbered Limited Editions Shipped" },
+  { year: "100%", label: "Senior Practitioner Delivery" }
+];
+---
+
+<Layout
+  title="Our Philosophy — Elena Vance Studio & Collective"
+  description="Subtractive rigor, Swiss typographic discipline, and enduring editorial craft. Investigating how restraint creates permanence in a saturated world."
+  activePath="/philosophy"
+>
+  <!-- Philosophy Hero -->
+  <section class="philosophy-hero hairline-b">
+    <div class="container-minimal">
+      <div class="hero-top-meta">
+        <span class="mono-meta">01 // MANIFESTO</span>
+        <span class="pill-tag">SUBTRACTIVE METHOD</span>
+      </div>
+
+      <h1 class="drasa-headline page-title">
+        Our Philosophy<span class="title-dot">.</span>
+      </h1>
+
+      <p class="drasa-lead hero-intro-lead">
+        Subtractive rigor is not merely an aesthetic preference — it is an ethical posture. In a world faster, louder, and more confident in its half-truths than anything before, restraint is no longer optional. It is the practice that must be trained deliberately.
+      </p>
+    </div>
+  </section>
+
+  <!-- Manifesto Narrative -->
+  <section class="manifesto-narrative-section hairline-b">
+    <div class="container-minimal">
+      <div class="narrative-grid">
+        <div class="narrative-col-left">
+          <span class="mono-meta">THE POSTURE</span>
+          <h2 class="sub-heading">We design work people keep on their desks for decades.</h2>
+        </div>
+
+        <div class="narrative-col-right">
+          <p class="narrative-p-large">
+            We run the material research and visual architecture that stakeholders remember years later, because it tells them something undeniably true about themselves and the people they serve.
+          </p>
+          <p class="narrative-p">
+            When tools are faster than ever — anyone can prompt a screen or layout in minutes — the only difference in who you work with is how they think: design is a discipline of thought. The organisations that will matter in the next decade are the ones who actually understand what they stand for, eliminating the superfluous to protect human attention.
+          </p>
+          <p class="narrative-p">
+            We do this with top researchers, typographers, bookbinders, and creative technologists around the world. We practice courage in physical artifacts and digital systems alike.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Four Principles Grid -->
+  <section class="principles-section hairline-b">
+    <div class="container-minimal">
+      <div class="section-title-wrap">
+        <span class="mono-meta">THE FOUR LAWS</span>
+        <h2 class="drasa-section-title">Laws of Restraint<span class="title-dot">.</span></h2>
+      </div>
+
+      <div class="principles-cards-grid">
+        {principles.map((item) => (
+          <div class="principle-box">
+            <span class="mono-meta principle-num">{item.num}</span>
+            <h3 class="principle-box-title">{item.title}</h3>
+            <p class="principle-box-body">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Deep Story Section -->
+  <section class="founder-deep-section hairline-b" id="founder">
+    <div class="container-minimal">
+      <div class="founder-story-grid">
+        <!-- Media Column -->
+        <div class="founder-sticky-media">
+          <div class="founder-large-portrait">
+            <img
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=85"
+              alt="Elena Vance — Principal"
+              loading="lazy"
+            />
+          </div>
+          <div class="founder-caption mono-meta">
+            <span>ELENA VANCE // FOUNDER & CREATIVE DIRECTOR</span>
+            <span>ZHdK & HARVARD EXEC ED</span>
+          </div>
+        </div>
+
+        <!-- Narrative Column -->
+        <div class="founder-story-content">
+          <span class="mono-meta">FOUNDER STORY</span>
+          <h2 class="drasa-section-title">
+            The analyst and the artist<span class="title-dot">.</span>
+          </h2>
+
+          <div class="story-paragraphs">
+            <p class="highlight-p">
+              “Elena is a force of nature” is what clients and curators repeat most often. There are eighteen years of design leadership behind that reputation: directing visual communication at top Swiss studios and Kyoto ateliers, always working at the intersection of human stillness and material precision.
+            </p>
+
+            <p>
+              My purpose is to make things that change how people see themselves. I do this by helping institutions, founders, and teams make the invisible visible: the hidden essence, the tactile barriers, the quiet stories, and the structural beauty shaping human lives. Once visible, I help turn that insight into better monographs, clearer brand systems, and braver creative action.
+            </p>
+
+            <p>
+              I think of myself as the analyst and the artist working as one instrument. I’ve never had to choose between mathematical rigor and tactile play, because for me the rigor is the play. Give me complexity to make beautiful and pure, and you’ll get our best work.
+            </p>
+
+            <p>
+              Trained at the Zurich University of the Arts (ZHdK), fellow of Echizen paper craft, and alumna of Harvard Business School Executive Education, I speak regularly at international design symposia and lecture across Europe and Japan. Most people wait for perfect conditions before they begin; I learned early that clarity is forged through subtractive courage.
+            </p>
+          </div>
+
+          <!-- Credential Numbers -->
+          <div class="credentials-counter-grid hairline-t">
+            {credentials.map(c => (
+              <div class="cred-item">
+                <span class="cred-num">{c.year}</span>
+                <span class="cred-label mono-meta">{c.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="founder-cta-row">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn-pill-outline">
+              <span>Connect on LinkedIn</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href="/contact" class="btn-pill-accent">
+              <span>Start Brave With Us</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .philosophy-hero {
+    padding-top: clamp(3.5rem, 7vw, 6.5rem);
+    padding-bottom: var(--space-section);
+    background-color: var(--color-surface);
+  }
+
+  .hero-top-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .page-title {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-intro-lead {
+    max-width: 980px;
+    margin: 0;
+  }
+
+  /* Narrative Grid */
+  .manifesto-narrative-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .narrative-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 900px) {
+    .narrative-grid {
+      grid-template-columns: 1.1fr 1.3fr;
+      gap: var(--space-16);
+      align-items: start;
+    }
+  }
+
+  .narrative-col-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sub-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.2vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--color-primary);
+  }
+
+  .narrative-col-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .narrative-p-large {
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .narrative-p {
+    font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  /* Principles */
+  .principles-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .section-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .principles-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .principles-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  .principle-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: clamp(2rem, 4vw, 3rem);
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .principle-num {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .principle-box-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 1.9vw, 1.65rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+  }
+
+  .principle-box-body {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  /* Founder Deep */
+  .founder-deep-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .founder-story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 900px) {
+    .founder-story-grid {
+      grid-template-columns: 1fr 1.35fr;
+      gap: var(--space-16);
+      align-items: start;
+    }
+  }
+
+  .founder-sticky-media {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 900px) {
+    .founder-sticky-media {
+      position: sticky;
+      top: 100px;
+    }
+  }
+
+  .founder-large-portrait {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .founder-large-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .founder-caption {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
+  }
+
+  .founder-story-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .story-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .highlight-p {
+    font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .story-paragraphs p:not(.highlight-p) {
+    font-size: clamp(0.95rem, 1.25vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  /* Credentials */
+  .credentials-counter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    padding-top: var(--space-8);
+  }
+
+  @media (min-width: 600px) {
+    .credentials-counter-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .cred-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cred-num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .cred-label {
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
+    line-height: 1.35;
+  }
+
+  .founder-cta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    padding-top: var(--space-4);
+  }
+</style>

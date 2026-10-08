@@ -1,0 +1,191 @@
+---
+const records = [
+  {
+    year: "2026",
+    title: "Swiss Design Awards — Federal Office of Culture",
+    entity: "Federal Office of Culture (FOC)",
+    role: "Award Winner: Editorial Direction (Éditions Silence)",
+    city: "Basel, CH"
+  },
+  {
+    year: "2025",
+    title: "Tokyo Type Directors Club (Tokyo TDC)",
+    entity: "Annual International Exhibition",
+    role: "TDC Prize Nominee: Generative Typographic Identity",
+    city: "Tokyo, JP"
+  },
+  {
+    year: "2025",
+    title: "Museum für Gestaltung Zürich",
+    entity: "Swiss Design Archive",
+    role: "Permanent Collection Induction (Monographs 2023–2025)",
+    city: "Zurich, CH"
+  },
+  {
+    year: "2024",
+    title: "Art Directors Club of Europe (ADC*E)",
+    entity: "European Design Awards",
+    role: "Gold Distinction: Minimal Luxury Packaging (Verve)",
+    city: "Barcelona, ES"
+  },
+  {
+    year: "2024",
+    title: "Steidl Bookmaking Symposium",
+    entity: "International Publishing Grant",
+    role: "Keynote: Negative Space and Carbon Inks in Print",
+    city: "Göttingen, DE"
+  },
+  {
+    year: "2023",
+    title: "Kyoto Institute of Technology",
+    entity: "Guest Research Fellowship",
+    role: "Research Fellow: Washi Paper and Double-Leaf Binding",
+    city: "Kyoto, JP"
+  }
+];
+---
+
+<section class="press-section hairline-b" id="press">
+  <div class="container-minimal">
+    <div class="section-header">
+      <div class="header-left">
+        <span class="mono-meta section-num">04 / RECOGNITION</span>
+        <h2 class="section-title">EXHIBITIONS & LECTURES</h2>
+      </div>
+      <p class="section-lead">
+        Exhibition surveys, monograph acquisitions, and international design honors.
+      </p>
+    </div>
+
+    <!-- Table of records -->
+    <div class="records-table">
+      {records.map((r) => (
+        <div class="record-row hairline-b">
+          <div class="record-year mono-meta mono-num">{r.year}</div>
+          <div class="record-main">
+            <h3 class="record-title">{r.title}</h3>
+            <span class="record-role">{r.role}</span>
+          </div>
+          <div class="record-entity mono-meta">{r.entity}</div>
+          <div class="record-city mono-meta">{r.city}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .press-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 900px) {
+    .section-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .section-num {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.75rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--color-primary);
+  }
+
+  .section-lead {
+    max-width: 460px;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .records-table {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .record-row {
+    display: grid;
+    grid-template-columns: 48px 1fr 60px;
+    gap: var(--space-4);
+    align-items: baseline;
+    padding: var(--space-6) 0;
+    transition: background-color var(--transition-fast);
+  }
+
+  @media (min-width: 860px) {
+    .record-row {
+      grid-template-columns: 80px 2.5fr 1.5fr 100px;
+      gap: var(--space-6);
+      align-items: center;
+    }
+  }
+
+  .record-row:hover {
+    background-color: var(--color-surface-subtle);
+  }
+
+  .record-year {
+    color: var(--color-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .record-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .record-title {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .record-role {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .record-entity {
+    display: none;
+    font-size: 0.72rem;
+    color: var(--color-text-dim);
+  }
+
+  @media (min-width: 860px) {
+    .record-entity {
+      display: block;
+    }
+  }
+
+  .record-city {
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+    text-align: right;
+  }
+</style>

@@ -1,0 +1,248 @@
+---
+import { projects } from '../data/projects';
+
+const featuredProjects = projects.filter(p => p.featured);
+---
+
+<section class="works-section hairline-b" id="works">
+  <div class="container-minimal">
+    <!-- Header -->
+    <div class="works-header-row">
+      <div class="header-left">
+        <span class="mono-meta section-label">05 // ARCHIVE</span>
+        <h2 class="drasa-section-title">
+          Latest<br />Work<span class="title-dot">.</span>
+        </h2>
+      </div>
+
+      <div class="header-right">
+        <p class="works-lead">
+          Selected art direction, identity systems, tactile packaging, and exhibition monographs developed for cultural institutions and technological pioneers.
+        </p>
+        <a href="/work" class="btn-pill">
+          <span>All Projects ({projects.length})</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Works Grid -->
+    <div class="works-grid">
+      {featuredProjects.map((proj) => (
+        <article class="work-card">
+          <a href={`/work/${proj.slug}`} class="work-card-media" aria-label={`View case study for ${proj.title}`}>
+            <div class="work-img-container">
+              <img src={proj.heroImage} alt={proj.title} loading="lazy" />
+            </div>
+            <div class="work-card-pill">
+              <span class="pill-category">{proj.category}</span>
+              <span class="pill-dot">·</span>
+              <span class="pill-client">{proj.client}</span>
+            </div>
+          </a>
+
+          <div class="work-card-info">
+            <div class="work-title-row">
+              <a href={`/work/${proj.slug}`} class="work-link">
+                <h3 class="work-title">{proj.title}</h3>
+              </a>
+              <span class="work-year mono-meta mono-num">{proj.year}</span>
+            </div>
+            <p class="work-headline">{proj.headline}</p>
+
+            <div class="work-tags-list">
+              {proj.tags.map(tag => (
+                <span class="pill-tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .works-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .works-header-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: clamp(3rem, 6vw, 5.5rem);
+  }
+
+  @media (min-width: 900px) {
+    .works-header-row {
+      grid-template-columns: 1.1fr 1.3fr;
+      align-items: end;
+      justify-content: space-between;
+    }
+  }
+
+  .section-label {
+    color: var(--color-text-dim);
+    margin-bottom: var(--space-2);
+    display: inline-block;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .works-lead {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  /* Works Grid */
+  .works-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  @media (min-width: 860px) {
+    .works-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(2.5rem, 5vw, 4rem);
+    }
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .work-card-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    display: block;
+    text-decoration: none;
+  }
+
+  .work-img-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .work-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.85s var(--ease-expo);
+  }
+
+  .work-card:hover .work-img-container img {
+    transform: scale(1.04);
+  }
+
+  .work-card-pill {
+    position: absolute;
+    bottom: var(--space-4);
+    left: var(--space-4);
+    max-width: calc(100% - 2rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background-color: rgba(17, 18, 20, 0.85);
+    color: #FFFFFF;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pill-client {
+    color: rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pill-dot {
+    opacity: 0.4;
+  }
+
+  @media (max-width: 520px) {
+    .work-card-pill {
+      bottom: var(--space-3);
+      left: var(--space-3);
+      padding: 5px 10px;
+      font-size: 0.6875rem;
+    }
+
+    .pill-client,
+    .pill-dot {
+      display: none;
+    }
+  }
+
+  /* Info */
+  .work-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .work-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+
+  .work-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .work-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--color-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .work-card:hover .work-title {
+    color: var(--color-secondary);
+  }
+
+  .work-year {
+    color: var(--color-text-dim);
+    font-size: 0.8125rem;
+  }
+
+  .work-headline {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .work-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+</style>

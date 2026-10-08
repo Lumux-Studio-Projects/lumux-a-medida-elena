@@ -1,0 +1,89 @@
+---
+---
+
+<section class="philosophy-statement-section hairline-b" id="philosophy-statement">
+  <div class="container-minimal">
+    <div class="split-layout">
+      <!-- Left Column: Monumental Heading -->
+      <div class="split-heading-col">
+        <span class="mono-meta section-label">01 // DOCTRINE</span>
+        <h2 class="drasa-section-title">
+          A unique<br />Philosophy<span class="title-dot">.</span>
+        </h2>
+      </div>
+
+      <!-- Right Column: Statement & Callout -->
+      <div class="split-content-col">
+        <p class="statement-body">
+          Elena Vance is an atelier and a workshop. We help cultural institutions, forward-thinking brands, and founders experiment their way to clearer identities and enduring publications, using the subtractive rigor and typographic craft the best teams trust.
+        </p>
+
+        <p class="statement-secondary">
+          The world is faster, louder, and more saturated with disposable visual noise than anything that came before. In that world, restraint is no longer optional — it is the practice that must be trained deliberately, the way any other capacity is trained.
+        </p>
+
+        <div class="action-wrap">
+          <a href="/philosophy" class="btn-pill">
+            <span>Read the full manifesto</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .philosophy-statement-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 900px) {
+    .split-layout {
+      grid-template-columns: 1.1fr 1.3fr;
+      gap: var(--space-16);
+      align-items: start;
+    }
+  }
+
+  .split-heading-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .section-label {
+    color: var(--color-text-dim);
+  }
+
+  .split-content-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .statement-body {
+    font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .statement-secondary {
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  .action-wrap {
+    padding-top: var(--space-4);
+  }
+</style>

@@ -1,0 +1,152 @@
+---
+import { testimonials } from '../data/testimonials';
+---
+
+<section class="testimonials-section hairline-b" id="testimonials">
+  <div class="container-minimal">
+    <div class="testimonials-header">
+      <span class="mono-meta section-label">06 // ENDORSEMENTS</span>
+      <h2 class="drasa-section-title">
+        What<br />people say<span class="title-dot">.</span>
+      </h2>
+    </div>
+
+    <!-- Quotes Grid -->
+    <div class="testimonials-grid">
+      {testimonials.map((item) => (
+        <div class="testimonial-card">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <p class="testimonial-quote">{item.quote}”</p>
+          <div class="testimonial-author-row hairline-t">
+            <div class="author-info">
+              <span class="author-name">{item.author}</span>
+              <span class="author-role">{item.role}</span>
+              <span class="author-org mono-meta">{item.organization}</span>
+            </div>
+            {item.projectSlug && (
+              <a href={`/work/${item.projectSlug}`} class="case-link mono-meta" aria-label={`View case study for ${item.organization}`}>
+                <span>VIEW WORK</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .testimonials-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .section-label {
+    color: var(--color-text-dim);
+  }
+
+  /* Quotes Grid */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 860px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: clamp(2rem, 4vw, 3rem);
+    position: relative;
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .testimonial-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .quote-mark {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--color-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .testimonial-quote {
+    font-size: clamp(1.1rem, 1.45vw, 1.3rem);
+    line-height: 1.55;
+    font-weight: 400;
+    color: var(--color-primary);
+    margin-bottom: var(--space-8);
+  }
+
+  .testimonial-author-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-4);
+    padding-top: var(--space-6);
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .author-name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .author-role {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .author-org {
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
+    margin-top: 2px;
+  }
+
+  .case-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.6875rem;
+    color: var(--color-primary);
+    padding: 6px 12px;
+    background-color: var(--color-surface-subtle);
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .case-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+  }
+</style>

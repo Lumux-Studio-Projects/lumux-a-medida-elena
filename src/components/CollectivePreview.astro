@@ -1,0 +1,201 @@
+---
+import { collectiveMembers } from '../data/collective';
+
+const previewMembers = collectiveMembers.slice(0, 6);
+---
+
+<section class="collective-preview-section hairline-b" id="collective">
+  <div class="container-minimal">
+    <div class="collective-header-row">
+      <div class="header-left">
+        <span class="mono-meta section-label">04 // NETWORK</span>
+        <h2 class="drasa-section-title">
+          Powered by<br />the Collective<span class="title-dot">.</span>
+        </h2>
+      </div>
+
+      <div class="header-right">
+        <p class="collective-lead">
+          We partner with senior researchers, typographers, bookbinders, and creative technologists around the world. No junior placements, no agency bloat — the people who pitch are the people who craft.
+        </p>
+        <a href="/collective" class="btn-pill">
+          <span>Meet the collective ({collectiveMembers.length})</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Collective Grid -->
+    <div class="collective-cards-grid">
+      {previewMembers.map((member) => (
+        <a href={`/collective#${member.id}`} class="member-card">
+          <div class="member-img-frame">
+            <img src={member.image} alt={member.name} loading="lazy" />
+          </div>
+          <div class="member-meta">
+            <div class="member-name-row">
+              <h3 class="member-name">{member.name}</h3>
+              <span class="member-arrow" aria-hidden="true">↗</span>
+            </div>
+            <span class="member-role">{member.role}</span>
+            <span class="member-discipline mono-meta">{member.discipline}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .collective-preview-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .collective-header-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  @media (min-width: 900px) {
+    .collective-header-row {
+      grid-template-columns: 1.1fr 1.3fr;
+      align-items: end;
+      justify-content: space-between;
+    }
+  }
+
+  .section-label {
+    color: var(--color-text-dim);
+    margin-bottom: var(--space-2);
+    display: inline-block;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .collective-lead {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  /* Collective Grid */
+  .collective-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .collective-cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .collective-cards-grid {
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--space-6);
+    }
+  }
+
+  .member-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--transition-fast);
+  }
+
+  .member-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .member-img-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.15;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .member-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(80%);
+    transition: filter 0.6s ease, transform 0.6s var(--ease-expo);
+  }
+
+  .member-card:hover .member-img-frame img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  .member-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .member-name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .member-name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .member-arrow {
+    font-size: 0.8125rem;
+    color: var(--color-text-dim);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .member-card:hover .member-arrow {
+    transform: translate(2px, -2px);
+    color: var(--color-secondary);
+  }
+
+  .member-role {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    line-height: 1.35;
+  }
+
+  .member-discipline {
+    font-size: 0.625rem;
+    color: var(--color-text-dim);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 480px) {
+    .collective-cards-grid {
+      gap: var(--space-4);
+    }
+
+    .member-name {
+      font-size: 0.875rem;
+    }
+
+    .member-role {
+      font-size: 0.6875rem;
+    }
+  }
+</style>

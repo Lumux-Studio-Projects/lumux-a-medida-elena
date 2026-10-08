@@ -1,0 +1,529 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/projects';
+
+const categories = [
+  'All',
+  'Editorial & Book Design',
+  'Brand Identity & Systems',
+  'Art Direction & Exhibition',
+  'Packaging & Tactile Objects'
+];
+---
+
+<Layout
+  title="Projects — Brave in Practice // Elena Vance Studio"
+  description="Comprehensive case studies of art direction, identity systems, tactile packaging, and published monographs."
+  activePath="/work"
+>
+  <!-- Work Hero -->
+  <section class="work-hero hairline-b">
+    <div class="container-minimal">
+      <div class="hero-top-meta">
+        <span class="mono-meta">03 // ARCHIVE</span>
+        <span class="pill-tag">{projects.length} COMMISSIONS</span>
+      </div>
+
+      <h1 class="drasa-headline page-title">
+        Brave in practice<span class="title-dot">.</span>
+      </h1>
+
+      <p class="drasa-lead hero-intro-lead">
+        A record of editorial monographs, brand architectures, and tactile objects crafted with radical restraint. No superficial decoration — signed off against what shipped.
+      </p>
+
+      <!-- Category Filter Pills & View Switcher -->
+      <div class="archive-controls hairline-t">
+        <div class="category-filters" id="category-filters">
+          {categories.map((cat, idx) => (
+            <button
+              class={`filter-pill ${idx === 0 ? 'is-active' : ''}`}
+              data-filter={cat === 'All' ? 'all' : cat}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <div class="view-switchers">
+          <button class="view-toggle-btn is-active" id="btn-view-grid" aria-label="Grid View">
+            <span>Grid</span>
+          </button>
+          <span class="view-split">/</span>
+          <button class="view-toggle-btn" id="btn-view-table" aria-label="Table View">
+            <span>Index</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Grid View Container -->
+  <section class="archive-grid-section" id="container-grid-view">
+    <div class="container-minimal">
+      <div class="project-grid" id="project-cards-container">
+        {projects.map((proj) => (
+          <article class="project-card" data-category={proj.category}>
+            <a href={`/work/${proj.slug}`} class="card-image-wrap">
+              <div class="image-inner">
+                <img src={proj.heroImage} alt={proj.title} loading="lazy" />
+              </div>
+              <div class="card-pill">
+                <span class="pill-cat">{proj.category}</span>
+                <span class="pill-dot">·</span>
+                <span class="pill-year">{proj.year}</span>
+              </div>
+            </a>
+
+            <div class="card-body">
+              <div class="card-header-row">
+                <span class="card-client mono-meta">{proj.client}</span>
+                <span class="card-loc mono-meta">{proj.location}</span>
+              </div>
+
+              <a href={`/work/${proj.slug}`} class="card-title-link">
+                <h2 class="card-title">{proj.title}</h2>
+              </a>
+
+              <p class="card-summary">{proj.headline}</p>
+
+              <div class="card-footer-row">
+                <div class="card-tags-wrap">
+                  {proj.tags.map(t => (
+                    <span class="pill-tag">{t}</span>
+                  ))}
+                </div>
+                <a href={`/work/${proj.slug}`} class="card-view-btn" aria-label={`Read case study for ${proj.title}`}>
+                  <span>Read Case Study</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Table View Container -->
+  <section class="archive-table-section is-hidden" id="container-table-view">
+    <div class="container-minimal">
+      <div class="table-wrapper">
+        <div class="table-head hairline-b mono-meta">
+          <span class="col-id">№</span>
+          <span class="col-title">PROJECT / COMMISSION</span>
+          <span class="col-client">CLIENT</span>
+          <span class="col-category">DISCIPLINE</span>
+          <span class="col-year">YEAR</span>
+          <span class="col-action">LINK</span>
+        </div>
+
+        <div class="table-body" id="table-rows-container">
+          {projects.map((proj) => (
+            <div class="table-row hairline-b" data-category={proj.category}>
+              <span class="col-id mono-meta">{proj.id}</span>
+              <div class="col-title">
+                <a href={`/work/${proj.slug}`} class="row-title-link">
+                  <strong>{proj.title}</strong>
+                </a>
+              </div>
+              <span class="col-client">{proj.client}</span>
+              <span class="col-category mono-meta">{proj.category}</span>
+              <span class="col-year mono-meta mono-num">{proj.year}</span>
+              <div class="col-action">
+                <a href={`/work/${proj.slug}`} class="btn-table-action" aria-label={`Open ${proj.title}`}>
+                  <span>Case Study ↗</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Filter and view switcher interactions
+  const filterBtns = document.querySelectorAll('#category-filters [data-filter]');
+  const gridCards = document.querySelectorAll('#project-cards-container .project-card');
+  const tableRows = document.querySelectorAll('#table-rows-container .table-row');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      const filterVal = btn.getAttribute('data-filter') || 'all';
+
+      // Filter grid
+      gridCards.forEach((card) => {
+        const cat = card.getAttribute('data-category');
+        if (filterVal === 'all' || cat === filterVal) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+
+      // Filter table
+      tableRows.forEach((row) => {
+        const cat = row.getAttribute('data-category');
+        if (filterVal === 'all' || cat === filterVal) {
+          (row as HTMLElement).style.display = 'grid';
+        } else {
+          (row as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Switch between Grid and Table views
+  const btnGrid = document.getElementById('btn-view-grid');
+  const btnTable = document.getElementById('btn-view-table');
+  const containerGrid = document.getElementById('container-grid-view');
+  const containerTable = document.getElementById('container-table-view');
+
+  if (btnGrid && btnTable && containerGrid && containerTable) {
+    btnGrid.addEventListener('click', () => {
+      btnGrid.classList.add('is-active');
+      btnTable.classList.remove('is-active');
+      containerGrid.classList.remove('is-hidden');
+      containerTable.classList.add('is-hidden');
+    });
+
+    btnTable.addEventListener('click', () => {
+      btnTable.classList.add('is-active');
+      btnGrid.classList.remove('is-active');
+      containerTable.classList.remove('is-hidden');
+      containerGrid.classList.add('is-hidden');
+    });
+  }
+</script>
+
+<style>
+  .work-hero {
+    padding-top: clamp(3.5rem, 7vw, 6.5rem);
+    padding-bottom: var(--space-12);
+    background-color: var(--color-surface);
+  }
+
+  .hero-top-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .page-title {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-intro-lead {
+    max-width: 980px;
+    margin: 0;
+  }
+
+  /* Controls */
+  .archive-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+  }
+
+  .category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter-pill {
+    padding: 7px 16px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .filter-pill:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .filter-pill.is-active {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+  }
+
+  .view-switchers {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--color-surface-subtle);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+  }
+
+  .view-toggle-btn {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    padding: 2px 6px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+  }
+
+  .view-toggle-btn.is-active {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .view-split {
+    color: var(--color-text-dim);
+    font-size: 0.75rem;
+  }
+
+  /* Grid View */
+  .archive-grid-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+
+  @media (min-width: 860px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(2.5rem, 5vw, 4rem);
+    }
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .card-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    display: block;
+    text-decoration: none;
+  }
+
+  .image-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .image-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.85s var(--ease-expo);
+  }
+
+  .project-card:hover .image-inner img {
+    transform: scale(1.04);
+  }
+
+  .card-pill {
+    position: absolute;
+    bottom: var(--space-4);
+    left: var(--space-4);
+    max-width: calc(100% - 2rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background-color: rgba(17, 18, 20, 0.85);
+    color: #FFFFFF;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pill-year {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (max-width: 520px) {
+    .card-pill {
+      bottom: var(--space-3);
+      left: var(--space-3);
+      padding: 5px 10px;
+      font-size: 0.6875rem;
+    }
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .card-header-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
+  }
+
+  .card-title-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--color-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .project-card:hover .card-title {
+    color: var(--color-secondary);
+  }
+
+  .card-summary {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .card-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  .card-tags-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .card-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 6px 14px;
+    background-color: var(--color-surface-subtle);
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-fast);
+  }
+
+  .card-view-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+  }
+
+  /* Table View */
+  .archive-table-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .is-hidden {
+    display: none !important;
+  }
+
+  .table-head {
+    display: grid;
+    grid-template-columns: 60px 2fr 1.5fr 1.8fr 80px 140px;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    color: var(--color-text-dim);
+    font-size: 0.6875rem;
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 60px 2fr 1.5fr 1.8fr 80px 140px;
+    gap: var(--space-4);
+    padding: var(--space-6) 0;
+    align-items: center;
+    transition: background-color var(--transition-fast);
+  }
+
+  .table-row:hover {
+    background-color: var(--color-surface-card);
+  }
+
+  .row-title-link {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--color-primary);
+  }
+
+  .btn-table-action {
+    display: inline-flex;
+    padding: 4px 10px;
+    background-color: var(--color-surface-subtle);
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    transition: all var(--transition-fast);
+  }
+
+  .btn-table-action:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+  }
+
+  @media (max-width: 860px) {
+    .table-head, .table-row {
+      grid-template-columns: 1.5fr 1fr auto;
+      gap: var(--space-3);
+    }
+    .col-category, .col-year, .col-id {
+      display: none;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .table-head, .table-row {
+      grid-template-columns: 1fr auto;
+      gap: var(--space-3);
+    }
+    .col-client {
+      display: none;
+    }
+  }
+</style>

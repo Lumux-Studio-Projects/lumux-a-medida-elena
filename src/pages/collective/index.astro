@@ -1,0 +1,271 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { collectiveMembers } from '../../data/collective';
+---
+
+<Layout
+  title="The Collective — Senior Design & Editorial Team // Elena Vance"
+  description="Senior practitioners, typographers, bookbinders, and creative technologists collaborating on bespoke commissions worldwide."
+  activePath="/collective"
+>
+  <!-- Collective Hero -->
+  <section class="collective-hero hairline-b">
+    <div class="container-minimal">
+      <div class="hero-top-meta">
+        <span class="mono-meta">02 // NETWORK</span>
+        <span class="pill-tag">SENIOR PRACTITIONERS</span>
+      </div>
+
+      <h1 class="drasa-headline page-title">
+        The Collective<span class="title-dot">.</span>
+      </h1>
+
+      <p class="drasa-lead hero-intro-lead">
+        A distributed guild of senior researchers, typographers, master bookbinders, and computational artists. No account managers, no junior handoffs — the practitioners you meet are the ones crafting every detail.
+      </p>
+    </div>
+  </section>
+
+  <!-- Collective Members List -->
+  <section class="collective-list-section hairline-b">
+    <div class="container-minimal">
+      <div class="collective-grid">
+        {collectiveMembers.map((member) => (
+          <article class="collective-member-card" id={member.id}>
+            <div class="member-photo-frame">
+              <img src={member.image} alt={member.name} loading="lazy" />
+              <div class="member-tag-badge mono-meta">
+                <span>{member.discipline}</span>
+              </div>
+            </div>
+
+            <div class="member-detail">
+              <div class="member-headline-row">
+                <h2 class="member-full-name">{member.name}</h2>
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="linkedin-pill mono-meta"
+                  aria-label={`${member.name} on LinkedIn`}
+                >
+                  <span>LinkedIn</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+
+              <span class="member-official-role">{member.role}</span>
+
+              <p class="member-narrative-bio">
+                {member.bio}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Collective Operating Posture -->
+  <section class="collective-posture-section hairline-b">
+    <div class="container-minimal">
+      <div class="posture-card">
+        <span class="mono-meta">HOW WE ENGAGE</span>
+        <h2 class="drasa-section-title">
+          Senior craft by design<span class="title-dot">.</span>
+        </h2>
+        <p class="posture-lead">
+          Traditional agencies bill for layers of account handling and junior overhead. At Atelier Elena Vance, we assemble bespoke multidisciplinary squads of proven masters for every commission. The result is unparalleled speed, uncompromising depth, and calm collaboration.
+        </p>
+
+        <div class="posture-action">
+          <a href="/contact" class="btn-pill-accent">
+            <span>Work With The Collective</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .collective-hero {
+    padding-top: clamp(3.5rem, 7vw, 6.5rem);
+    padding-bottom: var(--space-section);
+    background-color: var(--color-surface);
+  }
+
+  .hero-top-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .page-title {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-intro-lead {
+    max-width: 980px;
+    margin: 0;
+  }
+
+  /* List Section */
+  .collective-list-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .collective-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+
+  @media (min-width: 768px) {
+    .collective-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(2.5rem, 5vw, 4rem);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .collective-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(2.5rem, 4vw, 3.5rem);
+    }
+  }
+
+  .collective-member-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: clamp(1.5rem, 3vw, 2.2rem);
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .collective-member-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .member-photo-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.1;
+    overflow: hidden;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xs);
+  }
+
+  .member-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(70%);
+    transition: filter 0.6s ease, transform 0.6s var(--ease-expo);
+  }
+
+  .collective-member-card:hover .member-photo-frame img {
+    filter: grayscale(0%);
+    transform: scale(1.04);
+  }
+
+  .member-tag-badge {
+    position: absolute;
+    bottom: var(--space-3);
+    left: var(--space-3);
+    padding: 4px 10px;
+    background-color: rgba(17, 18, 20, 0.82);
+    color: #FFFFFF;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: var(--radius-pill);
+    font-size: 0.625rem;
+    letter-spacing: 0.04em;
+  }
+
+  .member-detail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .member-headline-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .member-full-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.8vw, 1.55rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+  }
+
+  .linkedin-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    background-color: var(--color-surface-subtle);
+    border-radius: var(--radius-pill);
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+    transition: all var(--transition-fast);
+  }
+
+  .linkedin-pill:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+  }
+
+  .member-official-role {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+
+  .member-narrative-bio {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+  }
+
+  /* Posture Section */
+  .collective-posture-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .posture-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: clamp(2.5rem, 6vw, 4.5rem);
+    max-width: 1080px;
+  }
+
+  .posture-lead {
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    max-width: 860px;
+  }
+
+  .posture-action {
+    padding-top: var(--space-2);
+  }
+</style>

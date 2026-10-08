@@ -1,0 +1,323 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { essays } from '../../data/essays';
+---
+
+<Layout
+  title="JOURNAL & ESSAYS — Elena Vance Atelier"
+  description="Critical writings on typographic grids, digital systems, print materiality, and editorial craft by Elena Vance."
+  activePath="/journal"
+>
+  <section class="journal-hero hairline-b">
+    <div class="container-minimal">
+      <div class="journal-telemetry mono-meta">
+        <span>CRITICAL ARCHIVE // ESSAYS & TECTONIC NOTES</span>
+        <span>INDEX № 26 — ZURICH & KYOTO</span>
+      </div>
+
+      <div class="journal-hero-main">
+        <h1 class="journal-title">
+          THE SUBTRACTIVE<br />
+          <span class="serif-italic journal-title-accent">JOURNAL & ESSAYS.</span>
+        </h1>
+        <p class="journal-lead">
+          Critical writings on Swiss grid rationalism, the friction of carbon ink, and the permanence of physical monographs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Essays List with In-Page Expandable Reader -->
+  <section class="essays-section">
+    <div class="container-minimal">
+      <div class="essays-list">
+        {essays.map((essay) => (
+          <article class="essay-item hairline-b" data-drawer-parent data-reveal>
+            <div class="essay-item-header">
+              <div class="essay-meta-top mono-meta">
+                <span class="essay-num">{essay.id}</span>
+                <span class="essay-cat">{essay.category}</span>
+                <span class="essay-date">{essay.date}</span>
+                <span class="essay-read">{essay.readTime}</span>
+              </div>
+
+              <div class="essay-title-row">
+                <div class="title-wrap">
+                  <h2 class="essay-heading">{essay.title}</h2>
+                  <p class="essay-subtitle serif-italic">{essay.subtitle}</p>
+                </div>
+
+                <button
+                  class="reader-toggle-btn mono-meta"
+                  data-drawer-trigger
+                  aria-label={`Read full essay: ${essay.title}`}
+                >
+                  <span class="btn-text">READ ESSAY</span>
+                  <span data-drawer-icon class="icon" aria-hidden="true">+</span>
+                </button>
+              </div>
+
+              <p class="essay-abstract">{essay.abstract}</p>
+            </div>
+
+            <!-- In-Page Reader Body -->
+            <div class="essay-full-body" data-drawer-body>
+              <div class="reader-container hairline-t">
+                <div class="reader-meta-bar mono-meta">
+                  <span>TRANSCRIPT RECORD // ATELIER ESSAY № {essay.id}</span>
+                  <span>PUBLISHED BY VANCE ATELIER PRESS</span>
+                </div>
+
+                <div class="reader-paragraphs">
+                  {essay.content.map((p, idx) => (
+                    <p class={idx === 0 ? 'drop-cap-p' : ''}>{p}</p>
+                  ))}
+                </div>
+
+                <div class="reader-colophon hairline-t mono-meta">
+                  <span>AUTHOR: ELENA VANCE</span>
+                  <span>END OF MANUSCRIPT</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .journal-hero {
+    padding: var(--space-12) 0 var(--space-12) 0;
+    background-color: var(--color-surface);
+  }
+
+  .journal-telemetry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+  }
+
+  .journal-hero-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .journal-title {
+    font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .journal-title-accent {
+    color: var(--color-secondary);
+  }
+
+  .journal-lead {
+    max-width: 720px;
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .essays-section {
+    padding: var(--space-section) 0;
+    background-color: var(--color-surface);
+  }
+
+  .essays-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .essay-item {
+    padding: var(--space-10) 0;
+    transition: background-color var(--transition-fast);
+  }
+
+  .essay-item:hover {
+    background-color: var(--color-surface-subtle);
+  }
+
+  .essay-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .essay-meta-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    font-size: 0.6875rem;
+  }
+
+  .essay-num {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .essay-cat {
+    color: var(--color-primary);
+  }
+
+  .essay-date, .essay-read {
+    color: var(--color-text-dim);
+  }
+
+  .essay-title-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 860px) {
+    .essay-title-row {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+  }
+
+  .title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 860px;
+  }
+
+  .essay-heading {
+    font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: var(--color-primary);
+  }
+
+  .essay-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+  }
+
+  .reader-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xs);
+    background-color: var(--color-surface-card);
+    color: var(--color-primary);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    align-self: flex-start;
+  }
+
+  .reader-toggle-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+  }
+
+  .icon {
+    font-size: 0.875rem;
+  }
+
+  .essay-abstract {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    max-width: 800px;
+    line-height: 1.6;
+  }
+
+  /* Full In-Page Reader Body */
+  .essay-full-body {
+    display: none;
+    margin-top: var(--space-8);
+  }
+
+  .essay-full-body.is-open {
+    display: block;
+    animation: readerOpen 0.4s var(--ease-expo) forwards;
+  }
+
+  @keyframes readerOpen {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reader-container {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .reader-container {
+      padding: var(--space-12);
+    }
+  }
+
+  .reader-meta-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .reader-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  .reader-paragraphs p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+
+  .drop-cap-p::first-letter {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    float: left;
+    line-height: 0.8;
+    padding-right: 12px;
+    padding-top: 4px;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .reader-colophon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-6);
+    font-size: 0.6875rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+</style>
